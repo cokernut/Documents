@@ -13,8 +13,6 @@ git push -u origin master
 git remote add origin https://github.com/cokernut/Documents.git
 git push -u origin master
 
-
-# RecyclerViewDemo
 Git常用命令备忘
 tech
 Git配置
