@@ -1,105 +1,4 @@
-# MarkDown练习
-
-头部
-====
-
-头部
-----
-
-## 列表
-* Candy.
-* Gum.
-* Booze.
-
-+ Candy.
-+ Gum.
-+ Booze
-
-- Candy.
-- Gum.
-- Booze.
-
-1. Red
-2. Green
-3. Blue
-
-
-3. Bird
-1. McHale
-8. Parish
-
-## 代码片段
-### 不指定语言
-`java code`
-### 指定语言
-```javascript
-$(document).ready(function () {
-    alert('hello world');
-});
-```
-
-## 链接
-[baidu]("www.baidu.com")
-
-<http://www.baidu.com/>
-```
-常用链接方法
-
-文字链接 [链接名称](http://链接网址)
-网址链接 <http://链接网址>
-高级链接技巧
-
-这个链接用 1 作为网址变量 [Google][1].
-这个链接用 yahoo 作为网址变量 [Yahoo!][yahoo].
-然后在文档的结尾为变量赋值（网址）
-
-[1]: http://www.google.com/
-[yahoo]: http://www.yahoo.com/
-```
-
-## 图片
-![alt text](http://www.86ps.com/uploadfiles/jpg/2011-11/2011111414003220188.jpg "Title")
-<img src="http://img2.3lian.com/2014/c7/12/d/77.jpg" alt="图片名称" Title="风景" width=256 height=256 />
-
-> 引用
-
-## 字体
-*斜体文本*    _斜体文本_
-
-**粗体文本**    __粗体文本__
-
-***粗斜体文本***    ___粗斜体文本___
-
-## 表格
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-dog | bird | cat
-----|------|----
-foo | foo  | foo
-bar | bar  | bar
-baz | baz  | baz
-
-## 反斜杠转义
-\*literal asterisks\*
-```
-Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：
-\   反斜线
-`   反引号
-*   星号
-_   底线
-{}  花括号
-[]  方括号
-()  括弧
-#   井字号
-+   加号
--   减号
-.   英文句点
-!   惊叹号
-```
+# MarkDown
 
 ## 代码
 
@@ -196,6 +95,56 @@ _   底线
 
         或者直接空八个，引入代码块
 ```
+
+## 分割线
+使用 --- 或者 *** 或者 * * * 表示水平分割线。
+
+## 次常用标记
+使用 标签: 或者 Tags: 表示标签标记。
+### 删除线
+使用 ~~ 表示删除线。
+```
+~~这是一条删除线~~
+```
+1.注意 ~~ 和 要添加删除线的文字之间不能有空格。
+2.我常使用在显示的告诉自己这行文字是要删除的。
+### 注脚
+使用 [^footer] 表示注脚。
+```
+这是一个注脚测试[^footer1]。
+[^footer1]: 这是一个测试，用来阐释注脚。
+```
+
+## 不常用标记
+### 实现页内跳转
+使用html代码实现页内跳转。在要跳转到的位置定义个锚 <span id = "jump">hehe</span> ，然后使用 [你好](#jump) 将 你好 设置为一单击即跳转到 hehe 所在位置的效果。
+```
+[你好](#jump)
+<span id = "jump">hehe</span>
+```
+
+## 表格
+
+具体使用方式请看示例。
+```
+------: 为右对齐。
+:------ 为左对齐。
+:------: 为居中对齐。
+------- 为使用默认居中对齐。
+```
+示例
+|         序号    |    交易名    |    交易说明    |    备注    |
+|    ------: |    :-------:    |    :---------   |    ------    |
+|    1    |    prfcfg    |    菜单配置    |    可以通过此交易查询到所有交易码和菜单的对应关系    |
+|    2    |    gentmo    |    编译所有交易    |    |
+|    100000    |    sysdba    |    数据库表模型汇总    |    |
+序号	交易名	交易说明	备注
+1	prfcfg	菜单配置	可以通过此交易查询到所有交易码和菜单的对应关系
+2	gentmo	编译所有交易	
+100000	sysdba	数据库表模型汇总	
+### 注意
+每个Markdown解析器都不一样，可能左右居中对齐方式的表示方式不一样。
+
 ## 引用
 
 普通引用
@@ -313,4 +262,107 @@ $$ (x+1)^2 = \class{hidden}{(x+1)(x+1)} $$
 $$
 (x+1)^2 = \cssId{step1}{\style{visibility:hidden}{(x+1)(x+1)}}
 $$
+```
+
+# MarkDown练习
+
+头部
+====
+
+头部
+----
+
+## 列表
+* Candy.
+* Gum.
+* Booze.
+
++ Candy.
++ Gum.
++ Booze
+
+- Candy.
+- Gum.
+- Booze.
+
+1. Red
+2. Green
+3. Blue
+
+
+3. Bird
+1. McHale
+8. Parish
+
+## 代码片段
+### 不指定语言
+`java code`
+### 指定语言
+```javascript
+$(document).ready(function () {
+    alert('hello world');
+});
+```
+
+## 链接
+[baidu]("www.baidu.com")
+
+<http://www.baidu.com/>
+```
+常用链接方法
+
+文字链接 [链接名称](http://链接网址)
+网址链接 <http://链接网址>
+高级链接技巧
+
+这个链接用 1 作为网址变量 [Google][1].
+这个链接用 yahoo 作为网址变量 [Yahoo!][yahoo].
+然后在文档的结尾为变量赋值（网址）
+
+[1]: http://www.google.com/
+[yahoo]: http://www.yahoo.com/
+```
+
+## 图片
+![alt text](http://www.86ps.com/uploadfiles/jpg/2011-11/2011111414003220188.jpg "Title")
+<img src="http://img2.3lian.com/2014/c7/12/d/77.jpg" alt="图片名称" Title="风景" width=256 height=256 />
+
+> 引用
+
+## 字体
+*斜体文本*    _斜体文本_
+
+**粗体文本**    __粗体文本__
+
+***粗斜体文本***    ___粗斜体文本___
+
+## 表格
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+dog | bird | cat
+----|------|----
+foo | foo  | foo
+bar | bar  | bar
+baz | baz  | baz
+
+## 反斜杠转义
+\*literal asterisks\*
+```
+Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：
+\   反斜线
+`   反引号
+*   星号
+_   底线
+{}  花括号
+[]  方括号
+()  括弧
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   惊叹号
 ```
