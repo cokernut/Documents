@@ -1,3 +1,10 @@
+Title: Git命令
+Date: 2016-09-09
+Tags: Git
+Slug: Git-help
+Authors: Cokernut
+Summary: Git命令
+
 # git知识点
 ## create a new repository on the command line
 ```
