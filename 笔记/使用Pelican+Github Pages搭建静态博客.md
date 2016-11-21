@@ -1,12 +1,11 @@
 Title: 使用Pelican+Github Pages搭建静态博客
-Date: 2016-11-17
-Modified: 2016-11-17
+Date: 2016-11-16
+Modified: 2016-11-16
 Tags: Pelican,Github Pages
 Slug: Pelican_Github_Pages_Create_Blog
 Authors: Cokernut
 Summary: 使用Pelican+Github Pages搭建静态博客
 
-# 使用Pelican+Github Pages搭建静态博客
 ## Pelican介绍
 
 什么是Pelican

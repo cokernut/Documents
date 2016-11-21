@@ -6,21 +6,19 @@ Slug: android_accessibilityService_apply
 Authors: Cokernut
 Summary: Android辅助功能AccessibilityService的使用
 
-# Android辅助功能AccessibilityService的使用
-AccessibilityService : Android系统的辅助功能服务  
-官方简介：
-> The classes in this package are used for development of accessibility service that provide alternative or augmented feedback to the user.
-使用这个类可以开发用于给用户提供替换或者是增强反馈的辅助功能服务。
-
-> An AccessibilityService runs in the background and receives callbacks by the system when AccessibilityEvents are fired. Such events denote some state transition in the user interface, for example, the focus has changed, a button has been clicked, etc. Such a service can optionally request the capability for querying the content of the active window. Development of an accessibility service requires extends this class and implements its abstract methods.
+## AccessibilityService官方简介：  
+> The classes in this package are used for development of accessibility service that provide alternative or augmented feedback to the user.  
+使用这个类可以开发用于给用户提供替换或者是增强反馈的辅助功能服务。  
+-----
+> An AccessibilityService runs in the background and receives callbacks by the system when AccessibilityEvents are fired. Such events denote some state transition in the user interface, for example, the focus has changed, a button has been clicked, etc. Such a service can optionally request the capability for querying the content of the active window. Development of an accessibility service requires extends this class and implements its abstract methods.  
 一个AccessibilityService在后台运行并接收系统AccessibilityEvents事件的回调，当用户界面的状态发生改变时会触发AccessibilityEvents事件，例如焦点的变化，点击一个按钮。
-这个服务可以获取到活动窗口的内容，开发一个辅助功能服务需要继承AccessibilityService并实现其中的抽象方法。
-
-> An AccessibilityServiceInfo describes an AccessibilityServiceInfo. The system notifies an AccessibilityService for AccessibilityEvents according to the information encapsulated in this class.
+这个服务可以获取到活动窗口的内容，开发一个辅助功能服务需要继承AccessibilityService并实现其中的抽象方法。  
+-----
+> An AccessibilityServiceInfo describes an AccessibilityServiceInfo. The system notifies an AccessibilityService for AccessibilityEvents according to the information encapsulated in this class.  
 一个AccessibilityService有一个用于描述AccessibilityService的AccessibilityServiceInfo对象，系统会通知AccessibilityService根据AccessibilityServiceInfo把信息装进AccessibilityEvents中。
 
 ## 继承AccessibilityService并实现其中的抽象方法。
-下面是我Service类：
+> 下面是我Service类：
 ```java
 public class MyService extends AccessibilityService {
     private int code = INSTALL;
@@ -104,7 +102,8 @@ public class MyService extends AccessibilityService {
 
 ```
 
-> AccessibilityService里几个重要的方法：
+> AccessibilityService里几个重要的方法：  
+
 + onServiceConnected() - 可选。系统会在成功连接上你的服务的时候调用这个方法，在这个方法里你可以做一下初始化工作，例如设备的声音震动管理，也可以调用setServiceInfo()进行配置AccessibilityServiceInfo。
 + onAccessibilityEvent() - 必须。通过这个函数可以接收系统发送来的AccessibilityEvent，接收来的AccessibilityEvent是经过过滤的，过滤是在配置工作时设置的。
 + onInterrupt() - 必须。这个在系统想要中断AccessibilityService返给的响应时会调用。在整个生命周期里会被调用多次。
@@ -136,7 +135,7 @@ public class MyService extends AccessibilityService {
         setServiceInfo(info);
     }
 ```
-2. 从Android4.0开始，开发者可以通过在AndroidManifest里添加<meta-data>标签配置AccessibilityService，在标签里指出配置文件的位置，如：
+2. 从Android4.0开始，开发者可以通过在AndroidManifest里添加<meta-data>标签配置AccessibilityService，在标签里指出配置文件的位置，如：  
 > res/xml/accessibility_service_info.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -159,7 +158,32 @@ public class MyService extends AccessibilityService {
          android:settingsActivity="packname.android.accessibility.ServiceSettingsActivity" packname写自己App的包名
     -->
 ```
-然后在AndroidManifest文件里把配置文件配置到AccessibilityService上：
+> 事件类型（EventType）：
+```
+        #TYPES_ALL_MASK：所有类型
+        #TYPE_VIEW_CLICKED ：单击
+        #TYPE_VIEW_LONG_CLICKED ：长按
+        #TYPE_VIEW_SELECTED ：选中
+        #TYPE_VIEW_FOCUSED ：获取焦点
+        #TYPE_VIEW_TEXT_CHANGED ：文字改变
+        #TYPE_WINDOW_STATE_CHANGED ：窗口状态改变
+        #TYPE_NOTIFICATION_STATE_CHANGED ：通知状态改变
+        #TYPE_VIEW_HOVER_ENTER
+        #TYPE_VIEW_HOVER_EXIT
+        #TYPE_TOUCH_EXPLORATION_GESTURE_START
+        #TYPE_TOUCH_EXPLORATION_GESTURE_END
+        #TYPE_WINDOW_CONTENT_CHANGED
+        #TYPE_VIEW_SCROLLED
+        #TYPE_VIEW_TEXT_SELECTION_CHANGED
+        #TYPE_ANNOUNCEMENT
+        #TYPE_VIEW_TEXT_TRAVERSED_AT_MOVEMENT_GRANULARITY
+        #TYPE_GESTURE_DETECTION_START
+        #TYPE_GESTURE_DETECTION_END
+        #TYPE_TOUCH_INTERACTION_START
+        #TYPE_TOUCH_INTERACTION_END
+        #TYPE_WINDOWS_CHANGED
+```
+> 然后在AndroidManifest文件里把配置文件配置到AccessibilityService上：
 ``` xml
 <service
     android:name=".MyService"
@@ -177,12 +201,11 @@ public class MyService extends AccessibilityService {
 到此一个AccessibilityService的开发就完成了。
 
 ## 其他
-MainActivity：
+> MainActivity：
 ```java
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mInstallTV;
-    private TextView mNextTV;
     private TextView mFinishTV;
     private TextView mStartTV;
     private TextView mStopTV;
@@ -197,14 +220,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mInstallTV      = (TextView) findViewById(R.id.tv_install);
-        mNextTV         = (TextView) findViewById(R.id.tv_next);
         mStartTV        = (TextView) findViewById(R.id.tv_start);
         mStopTV         = (TextView) findViewById(R.id.tv_stop);
         mFinishTV       = (TextView) findViewById(R.id.tv_finish);
         mInstallBT      = (Button) findViewById(R.id.bt_install);
         mNextBT         = (Button) findViewById(R.id.bt_next);
         mInstallTV      .setOnClickListener(this);
-        mNextTV         .setOnClickListener(this);
         mFinishTV       .setOnClickListener(this);
         mInstallBT      .setOnClickListener(this);
         mNextBT         .setOnClickListener(this);
@@ -232,9 +253,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, SecondActivity.class));
                 break;
             case R.id.tv_install:
-                showToast(((TextView)v).getText().toString());
-                break;
-            case R.id.tv_next:
                 showToast(((TextView)v).getText().toString());
                 break;
             case R.id.tv_finish:
@@ -302,5 +320,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 }
 ```
+> activity_main.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="top.cokernut.sample.MainActivity">
 
-## [源代码]("https://github.com/cokernut/AccessibilityServiceSample")
+    <LinearLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:id="@+id/tv_install"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:background="#00AA66"
+            android:layout_margin="10dp"
+            android:text="安装TV" />
+
+        <Button
+            android:id="@+id/bt_install"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:text="安装Btn" />
+
+        <Button
+            android:id="@+id/bt_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:text="下一步Btn" />
+
+        <TextView
+            android:id="@+id/tv_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:background="#00AA66"
+            android:layout_margin="10dp"
+            android:text="完成" />
+
+        <TextView
+            android:id="@+id/tv_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="30dp"
+            android:background="#0088FF"
+            android:layout_margin="10dp"
+            android:text="开始" />
+        <TextView
+            android:id="@+id/tv_stop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="30dp"
+            android:background="#0088FF"
+            android:layout_margin="10dp"
+            android:text="停止" />
+    </LinearLayout>
+</ScrollView>
+```
+> SecondActivity就一个TextView显示信息，无操作就不贴了。
+
+<font size=5>[源代码:]("https://github.com/cokernut/AccessibilityServiceSample") <https://github.com/cokernut/AccessibilityServiceSample></font>
