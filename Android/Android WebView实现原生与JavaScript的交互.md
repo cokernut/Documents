@@ -318,5 +318,5 @@ public class WebViewActivity extends AppCompatActivity implements MyWebView.WebV
 </html>
 ```
 效果图:  
-![效果图](images/Android/android_webview_native_javascript_interaction/1.png "效果图")  
+![效果图](../images/Android/android_webview_native_javascript_interaction/1.png "效果图")  
 <font size="5">[源代码](https://github.com/cokernut/CustomWebView)</font>
