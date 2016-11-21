@@ -9,11 +9,11 @@ Summary: Android辅助功能AccessibilityService的使用
 ## AccessibilityService官方简介：  
 > The classes in this package are used for development of accessibility service that provide alternative or augmented feedback to the user.  
 使用这个类可以开发用于给用户提供替换或者是增强反馈的辅助功能服务。  
------
+* * *
 > An AccessibilityService runs in the background and receives callbacks by the system when AccessibilityEvents are fired. Such events denote some state transition in the user interface, for example, the focus has changed, a button has been clicked, etc. Such a service can optionally request the capability for querying the content of the active window. Development of an accessibility service requires extends this class and implements its abstract methods.  
 一个AccessibilityService在后台运行并接收系统AccessibilityEvents事件的回调，当用户界面的状态发生改变时会触发AccessibilityEvents事件，例如焦点的变化，点击一个按钮。
 这个服务可以获取到活动窗口的内容，开发一个辅助功能服务需要继承AccessibilityService并实现其中的抽象方法。  
------
+* * *
 > An AccessibilityServiceInfo describes an AccessibilityServiceInfo. The system notifies an AccessibilityService for AccessibilityEvents according to the information encapsulated in this class.  
 一个AccessibilityService有一个用于描述AccessibilityService的AccessibilityServiceInfo对象，系统会通知AccessibilityService根据AccessibilityServiceInfo把信息装进AccessibilityEvents中。
 
@@ -123,7 +123,7 @@ public class MyService extends AccessibilityService {
 ```
 
 ## 配置AccessibilityService
-1. 可以在onServiceConnected()方法里进行，建立一个AccessibilityServiceInfo对象，通过这个对象设置监听系统事件类型，服务的反馈类型（震动，语音，声音），事件时间间隔，你想要监听的App的包名。最后调用setServiceInfo()进行设置，如：
+1.可以在onServiceConnected()方法里进行，建立一个AccessibilityServiceInfo对象，通过这个对象设置监听系统事件类型，服务的反馈类型（震动，语音，声音），事件时间间隔，你想要监听的App的包名。最后调用setServiceInfo()进行设置，如：
 ```java
  @Override
     protected void onServiceConnected() {
@@ -135,7 +135,7 @@ public class MyService extends AccessibilityService {
         setServiceInfo(info);
     }
 ```
-2. 从Android4.0开始，开发者可以通过在AndroidManifest里添加<meta-data>标签配置AccessibilityService，在标签里指出配置文件的位置，如：  
+2.从Android4.0开始，开发者可以通过在AndroidManifest里添加<meta-data>标签配置AccessibilityService，在标签里指出配置文件的位置，如：  
 > res/xml/accessibility_service_info.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -213,8 +213,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mInstallBT;
     private Button mNextBT;
 
-    private int num = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -231,12 +229,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mNextBT         .setOnClickListener(this);
         mStartTV        .setOnClickListener(this);
         mStopTV         .setOnClickListener(this);
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        num = 0;
     }
 
     @Override
@@ -257,10 +249,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_finish:
                 showToast(((TextView)v).getText().toString());
-                num++;
-                if (num > 5) {
-                    startActivity(new Intent("top.cokernut.sample.SecondActivity"));
-                }
                 break;
             case R.id.bt_install:
                 showToast(((Button)v).getText().toString());
@@ -280,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 Toast.makeText(MainActivity.this, "点击了" + text, Toast.LENGTH_LONG).show();
-                Log.d("text=====", num + "=====" + text);
+                Log.d("text=====", "=====" + text);
             }
         });
     }
@@ -393,6 +381,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     </LinearLayout>
 </ScrollView>
 ```
-> SecondActivity就一个TextView显示信息，无操作就不贴了。
+> SecondActivity就一个TextView显示信息，就不贴代码了。
 
-<font size=5>[源代码:]("https://github.com/cokernut/AccessibilityServiceSample") <https://github.com/cokernut/AccessibilityServiceSample></font>
+<font size=5>[源代码](https://github.com/cokernut/AccessibilityServiceSample)</font>

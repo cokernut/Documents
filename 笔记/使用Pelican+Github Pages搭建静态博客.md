@@ -354,6 +354,7 @@ Status: draft
 Hello Pelican, Markdown and GitHub Pages.
 ```
 7. 生成robots.txt与favicon.ico vim files/robots.txt
+
 ```
 User-agent: *
 Sitemap: http://Cokernut.github.io/sitemap.xml
@@ -423,4 +424,58 @@ make devserver
 
 撰写完文章，需要发布时，需要把 Status: draft 这行元数据去掉。否则文章不会出现在博客主页。只会在drafts下看得到。
 
-发布博客
+14. 相关文章、上下文导航
+
+> 1.打开pelicanconf.py，定义插件目录和启用插件：  
+
+```python
+#加载plugins
+PLUGIN_PATH = "plugins"
+PLUGINS = ["sitemap","neighbors","related_posts"]
+#sitemap
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.7,
+        'indexes': 0.8,
+        'pages': 0.5
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly'
+    }
+}
+#相关文章
+RELATED_POSTS_MAX = 10
+```
+> 2.邻居导航，在主题模版中调用如下代码，可根据自己的情况修改：  
+
+```html
+   <div class="pagination">
+      <ul>
+      {% if article.prev_article %}
+        <li class="prev"><a href="{{ SITEURL }}/{{ article.prev_article.url}}">← Previous</a></li>
+        {% else %}
+        <li class="prev"><a href="/">← Previous</a></li>
+        {% endif %}
+        <li><a href="/archives.html">Archive</a></li>
+        {% if article.next_article %}
+        <li class="next"><a href="{{ SITEURL }}/{{ article.next_article.url}}">Next →</a></li>
+        {% else %}
+        <li class="next"><a href="/">Next →</a></li>
+        {% endif %}
+      </ul>
+    </div>
+```
+> 3.相关文章：   
+```html
+{% if article.related_posts %}
+    <h4>Related Articles</h4>
+    <ul>
+    {% for related_post in article.related_posts %}
+        <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %} 
+```
