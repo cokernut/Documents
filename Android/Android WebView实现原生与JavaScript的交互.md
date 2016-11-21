@@ -1,6 +1,6 @@
 Title: Android WebView实现原生与JavaScript的交互
-Date: 2016-11-21
-Modified: 2016-11-21
+Date: 2016-10-12
+Modified: 2016-10-12
 Tags: Android,WebView
 Slug: android_webview_native_javascript_interaction
 Authors: Cokernut
@@ -318,5 +318,5 @@ public class WebViewActivity extends AppCompatActivity implements MyWebView.WebV
 </html>
 ```
 效果图:  
-![效果图](../images/Android/android_webview_native_javascript_interaction/1.png "效果图")  
+![效果图](images/Android/android_webview_native_javascript_interaction/1.png "效果图")  
 <font size="5">[源代码](https://github.com/cokernut/CustomWebView)</font>
