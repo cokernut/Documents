@@ -35,13 +35,23 @@ init那一步需要用到这个东西
 请到[官网](https://nodejs.org/en/)下载Windows版本的Node.js
 我选的是最新版，React Native的要求是4.1以上都可以支持，注意，目前已知Node 7.1版本在windows上无法正常工作，请注意避开这个版本！  
 建议设置npm镜像以加速后面的过程（或使用科学上网工具）
-> npm config set registry https://registry.npm.taobao.org --global
+> npm config set registry https://registry.npm.taobao.org --global  
 > npm config set disturl https://npm.taobao.org/dist --global  
 ## 安装react-native-cli（react-native命令行工具）
 
 Windows命令行运行：
-> npm install -g react-native-cli  
+> npm install -g react-native-cli   
 
+注意：有的教程命令是：npm install -g yarn react-native-cli就是多装了一个yarn模块，
+Yarn是Facebook提供的替代npm的工具，可以加速node模块的下载，它是在我们使用npm命令下载模块的时候
+会间接调用yarn命令下载，但是国内因为访问不了Facebook(梯子另说)，所以用yarn下载的结果要么是下载不了，
+要么是比npm还慢。所以你发现init项目的时候很慢或者是进度不知道动，那么你看一下命令行是不是因为有当你用npm的时候
+下面有说明调用yarn了，还有个版本号。这种情况下我们应该把yarn进行删除，删除方法：默认是在命令行下转到C:\Users\UserName\AppData\Roaming\npm
+目录下运行:
+> npm uninstall yarn  
+
+这样就可以把yarn模块进行删除，我们使用npm命令时就不会调用yarn了。
+React Native的命令行工具用于执行创建、初始化、更新项目、运行打包服务（packager）等任务。
 （进度慢的同学可以尝试使用Vpn或者是其他加速方法-_-）  
 
 ## 初始化项目
