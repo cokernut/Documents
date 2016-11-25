@@ -340,6 +340,7 @@ $(document).ready(function () {
 
 ## 图片
 ![alt text](http://www.86ps.com/uploadfiles/jpg/2011-11/2011111414003220188.jpg "Title")
+<img src="http://www.86ps.com/uploadfiles/jpg/2011-11/2011111414003220188.jpg" width = "40%" />
 <img src="http://img2.3lian.com/2014/c7/12/d/77.jpg" alt="图片名称" Title="风景" width=256 height=256 />
 
 > 引用

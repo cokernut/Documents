@@ -65,7 +65,8 @@ entry point的填写入口文件名称，默认的是index.js，我们建立的�
 ### curl -o .flowconfig https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig  
 
 curl是利用URL语法在命令行方式下工作的开源文件传输工具。它被广泛应用在Unix、多种Linux发行版中，并且有DOS和Win32、Win64下的移植版本。
-所以可知上面这句话的意思是在对应网址下下载.flowconfig文件。在windows下我们要使用curl命令会提示:curl不是内部和外部命令，也不是可执行文件或批处理命令。。。
+所以可知上面这句话的意思是在对应网址下下载.flowconfig文件。  
+在windows下我们要使用curl命令会提示:curl不是内部和外部命令，也不是可执行文件或批处理命令。。。
 我们在windows下要使用curl命令比较麻烦。解决方法就是我们用下载工具从https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig上把
 .flowconfig下载下来复制到项目根目录，或者是在项目根目录下新建一个.flowconfig文件用浏览器访问这个网址其中的内容把其中的内容复制到文件当中。
 
@@ -135,14 +136,17 @@ apply from: "$rootDir/node_modules/react-native/react.gradle"
 ```
  dependencies {
      ...
-     compile "com.facebook.react:react-native:+" //+可以为实际版本号比如：0.38.0
+     compile "com.facebook.react:react-native:+"
  }
- 或：
+```  
+如果你想总是使用一个特定的版本，你需要把+替换成你已经下载的React Native的版本号，
+这个版本号应该与package.json中的react-native的版本号("react-native": "^0.38.0")一致的。如本例中的0.38.0：  
+```
  dependencies {
      ...
      compile "com.facebook.react:react-native:0.38.0"
  }
- ```
+```
 
 ## 添加原生Activity文件：
 
@@ -276,7 +280,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 有悬浮窗权限才能显示：  
 ![图片](images/Android/android_React_Native_to_Native/7.png "图片")    
 
-注册MyReactActivity：注意主题为NoActionBar
+注册MyReactActivity：注意主题为Theme.AppCompat.Light.NoActionBar  
 ```
 <activity
     android:name=".MyReactActivity"
@@ -309,12 +313,15 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 第一次访问通常需要十几秒，并且在命令行可以看到进度条。
 
 ### 构建与运行你的程序
-两种方法：
-1. 在命令行中项目目录下运行gradlew installDebug
-2. 直接利用Android Studio像平常一样运行项目
+两种方法：  
+1. 在命令行中项目目录下运行gradlew installDebug  
+2. 直接利用Android Studio像平常一样运行项目  
 
 如果你使用的是Android studio为你构建而不是Gradle构建(gradlew installDebug)，你要确保你在安装应用之前运行了npm start。
-以防止它们之间出现冲突。
+以防止它们之间出现冲突。  
+效果：  
+![图片](images/Android/android_React_Native_to_Native/15.png "图片")
+![图片](images/Android/android_React_Native_to_Native/16.png "图片")  
 
 ### 在Android Studio中打包成独立安装程序
 
@@ -348,7 +355,8 @@ app/src/main根据实际情况改为自己项目中的目录，参考assets文�
 取消掉所有的64位的.so文件，全部加载32位的.so文件。  
 
 1. 在项目的根目录的build.gradle中加入：   
-> android.useDeprecatedNdk=true.
+> android.useDeprecatedNdk=true.  
+
 2. 在项目的模块(app)中的build.gradle文件中添加:
 ```
 android {
@@ -373,22 +381,22 @@ android {
 
 注意：这个方法有一个弊端，因为正式版，所以修改了页面js文件之后，不能像单独的React Native项目一样可以不重新运行项目只需要点击Reload
 即可立刻看到修改的js页面的效果，想重新看到效果需要再运行一遍生成bundle文件命令然后点击run按钮重新运行才能看到结果。这个方法可以不开启
-开发服务器也能看到js页面效果，因为js页面是通过bundle文件来运行的，就像正式的apk一样可以独立运行。
-debug模式release模式React Native JS代码调试的区别:  
+开发服务器也能看到js页面效果，因为js页面是通过bundle文件来运行的，就像正式的apk一样可以独立运行。  
+debug模式release模式React Native JS代码调试的区别:    
 debug模式: 修改完js代码打开开发者菜单点击Reload就可以看到更新后的效果，或者是开启Live Reload(点击Enable Live Reload)
 这样我们修改了js文件只要保存就会自动Reload。  
 release模式: 修改完js代码需要重新生成index.android.bundle 文件，点击run之后才能看到效果。因为正式版发布后是无法
 依赖本地服务器去更新index.android.bundle，需要把index.android.bundle打包到apk中才能运行。
 
-其他方案：  
+#### 其他方案：   
 方案1. 修改package.json文件如下：
 ```
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output app/src/main/assets/index.android.bundle --assets-dest app/src/main/res/"
   },
- ```
-这个方法我的没成功，仅供参考。  
+```  
+这个方法我的没成功，仅供参考。    
 
 方案2.在AndroidManifest.xml文件中加入如下权限：
 ```
@@ -401,14 +409,14 @@ release模式: 修改完js代码需要重新生成index.android.bundle 文件，
 
 ### 错误
 ![图片](images/Android/android_React_Native_to_Native/12.png "图片")   
-解决方法：
+#### 解决方法：    
 把Android Studio自动生成的文件夹androidTest和test删除，并修改项目的模块(app)的build.gradle文件：  
-修改前：  
+#### 修改前：  
 ![图片](images/Android/android_React_Native_to_Native/13.png "图片")  
-修改后：  
+#### 修改后：  
 ![图片](images/Android/android_React_Native_to_Native/14.png "图片")     
 
 
-## 其他问题可以参考[React Native for Android Windows环境搭建](http://cokernut.top/Android_React_Native_Windows_Environment.html)  
+### 其他问题可以参考[React Native for Android Windows环境搭建](http://cokernut.top/Android_React_Native_Windows_Environment.html)    
 
 <font size=5>[源代码](https://github.com/cokernut/ReactNativeDemo)</font>
