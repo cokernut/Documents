@@ -1,15 +1,15 @@
-Title: React Native嵌入Android原生应用中
+Title: React Native嵌入Android原生项目中
 Date: 2016-11-25
 Modified: 2016-11-25
 Tags: Android,recyclerview
 Slug: android_React_Native_to_Native
 Authors: Cokernut
-Summary: React Native嵌入Android原生应用中
+Summary: React Native嵌入Android原生项目中
 
 ## 开发环境准备
 首先你要搭建好React Native for Android开发环境， 没有搭建好的可以参考：[React Native for Android Windows环境搭建](http://cokernut.top/Android_React_Native_Windows_Environment.html)  
 
-## 用Android Studio新建Android原生应用
+## 用Android Studio新建Android原生项目
 我创建了一个名叫ReactNativeDemo的原生项目。
 
 ## 把React Native集成到原生项目当中

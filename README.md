@@ -4,7 +4,7 @@
 [RecyclerView基本用法](http://cokernut.top/android_recyclerView_base.html)  
 [Android WebView实现原生与JavaScript的交互](http://cokernut.top/android_webview_native_javascript_interaction.html)  
 [React Native for Android Windows环境搭建](http://cokernut.top/Android_React_Native_Windows_Environment.html)   
-[React Native嵌入Android原生应用中](http://cokernut.top/android_React_Native_to_Native.html)  
+[React Native嵌入Android原生项目中](http://cokernut.top/android_React_Native_to_Native.html)  
 ***
 ## Python
 ---
