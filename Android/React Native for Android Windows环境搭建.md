@@ -146,7 +146,8 @@ Debug server host & port for device中填入的应该是VirtualBox Host-Only Net
 的IP:8081（192.168.56.1:8081）,之后再重启应用或者是返回一下再点击菜单选择Reload JS,
 你就可以看到React Native的欢迎界面了  
 ![异常](images/Android/Android_React_Native_Windows_Environment/5.png "异常")   
-![异常](images/Android/Android_React_Native_Windows_Environment/6.png "异常") 
+![异常](images/Android/Android_React_Native_Windows_Environment/6.png "异常")  
+![异常](images/Android/Android_React_Native_Windows_Environment/10.png "异常") 
 
 ### 错误Could not connect to development server：
 如果确定IP地址设置正确了还提示：Could not connect to development server，那么你要确定你的React Native Server启动了，没启动的话启动React Native Server，在项目目录下运行：
