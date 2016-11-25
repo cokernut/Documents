@@ -15,9 +15,9 @@ Summary: React Native嵌入Android原生应用中
 ## 把React Native集成到原生项目当中
 
 ### 利用Windows命令行在项目根目录(ReactNativeDemo文件夹)下执行下面三行命令：
-> $ npm init  
-> $ npm install --save react react-native  
-> $ curl -o .flowconfig https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig  
+> npm init  
+> npm install --save react react-native  
+> curl -o .flowconfig https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig  
 
 这将在项目根目录(ReactNativeDemo文件夹)创建node_modules文件夹(模块)，并添加React Native依赖。
 
