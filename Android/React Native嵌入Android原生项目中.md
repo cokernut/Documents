@@ -419,4 +419,4 @@ release模式: 修改完js代码需要重新生成index.android.bundle 文件，
 
 ### 其他问题可以参考[React Native for Android Windows环境搭建](http://cokernut.top/Android_React_Native_Windows_Environment.html)    
 
-<font size=5>[源代码](https://github.com/cokernut/ReactNativeDemo)</font>
+<font size=5>[源代码](https://github.com/cokernut/ReactNativeToNative)</font>
