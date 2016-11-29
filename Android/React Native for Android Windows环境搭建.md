@@ -1,10 +1,12 @@
-Title: React Native for Android Windows环境搭建
-Date: 2016-11-23
-Modified: 2016-11-23
-Tags: Android,React Native
-Slug: Android_React_Native_Windows_Environment
-Authors: Cokernut
-Summary: React Native for Android Windows环境搭建
+---
+title: React Native for Android Windows环境搭建
+date: 2016-11-23
+tags: [Android, React Native]
+categories: Android
+description:
+---
+React Native for Android Windows环境搭建
+<!--more-->
 
 ## 安装JDK
 
@@ -37,6 +39,7 @@ init那一步需要用到这个东西
 建议设置npm镜像以加速后面的过程（或使用科学上网工具）
 > npm config set registry https://registry.npm.taobao.org --global  
 > npm config set disturl https://npm.taobao.org/dist --global  
+
 ## 安装react-native-cli（react-native命令行工具）
 
 Windows命令行运行：
@@ -124,44 +127,44 @@ emulator-5554 offline   # Google模拟器
 8. 回到开发者菜单然后选择Reload JS。  
 
 ## 异常 ：
-![异常](images/Android/Android_React_Native_Windows_Environment/1.png "异常")  
+![异常](/images/Android/React_Native_Windows_Environment/1.png "异常")  
  
 异常 ReferenceError:Can't find variable:_fbBatchedBridge或者Unable to download JS bundle解决方法
 看到这个，使劲摇晃手机或者直接点击菜单按钮，在出来的菜单里选择“Dev Settings”，然后点击最下面
 的“Debug server host & port for device“，然后填入你电脑的ip:8081，你的手机和你的电脑
 必须在同一个局域网内。设置完成以后再重启应用，你就可以看到React Native的欢迎界面了，
 就是index.android.js页面的内容  
-![效果](images/Android/Android_React_Native_Windows_Environment/2.png "效果")  
+![效果](/images/Android/React_Native_Windows_Environment/2.png "效果")  
 
 ## 遇到的坑：
 
 ### 小米MIUI系统可能会遇到下面的问题：
 react-native run-android的时候出现Failed to establish session问题：
 解决方案：小米手机设置里-------开发者选项---------启用MIUI优化 关闭  
-![异常](images/Android/Android_React_Native_Windows_Environment/3.png "异常")    
-![异常](images/Android/Android_React_Native_Windows_Environment/4.png "异常")  
+![异常](/images/Android/React_Native_Windows_Environment/3.png "异常")    
+![异常](/images/Android/React_Native_Windows_Environment/4.png "异常")  
 ### 注意：以下是使用Genymotion时的情况，上面的解决方法无法解决
 可以看到genymotion模拟器使用的网络连接方式是Host-Only方式，此情况下
 Debug server host & port for device中填入的应该是VirtualBox Host-Only Network
 的IP:8081（192.168.56.1:8081）,之后再重启应用或者是返回一下再点击菜单选择Reload JS,
 你就可以看到React Native的欢迎界面了  
-![异常](images/Android/Android_React_Native_Windows_Environment/5.png "异常")   
-![异常](images/Android/Android_React_Native_Windows_Environment/6.png "异常")  
-![异常](images/Android/Android_React_Native_Windows_Environment/10.png "异常") 
+![异常](/images/Android/React_Native_Windows_Environment/5.png "异常")   
+![异常](/images/Android/React_Native_Windows_Environment/6.png "异常")  
+![异常](/images/Android/React_Native_Windows_Environment/10.png "异常") 
 
 ### 错误Could not connect to development server：
 如果确定IP地址设置正确了还提示：Could not connect to development server，那么你要确定你的React Native Server启动了，没启动的话启动React Native Server，在项目目录下运行：
 > react-native start  
 
-![异常](images/Android/Android_React_Native_Windows_Environment/7.png "异常")   
+![异常](/images/Android/React_Native_Windows_Environment/7.png "异常")   
 
 ## 安卓调试
 
 打开Chrome，访问 http://localhost:8081/debugger-ui，应当能看到一个页面。按F12打开开发者菜单选择Sources勾选Pause On Caught Exceptions（如图）
 
 在模拟器或真机菜单中选择Debug JS，即可开始调试  
-![效果](images/Android/Android_React_Native_Windows_Environment/8.png "效果")  
-![效果](images/Android/Android_React_Native_Windows_Environment/9.png "效果")  
+![效果](/images/Android/React_Native_Windows_Environment/8.png "效果")  
+![效果](/images/Android/React_Native_Windows_Environment/9.png "效果")  
 
 
 

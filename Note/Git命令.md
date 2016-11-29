@@ -1,9 +1,12 @@
-Title: Git命令
-Date: 2016-09-29
-Tags: Git
-Slug: Git_Help
-Authors: Cokernut
-Summary: Git命令
+---
+title: Git命令
+date: 2016-09-29
+tags: [Git, GitHub]
+categories: Git
+description:
+---
+Git命令
+<!--more-->
 
 # git知识点
 ## create a new repository on the command line

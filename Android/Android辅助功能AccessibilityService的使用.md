@@ -1,10 +1,12 @@
-Title: Android辅助功能AccessibilityService的使用
-Date: 2016-11-17
-Modified: 2016-11-17
-Tags: Android,AccessibilityService
-Slug: android_accessibilityService_apply
-Authors: Cokernut
-Summary: Android辅助功能AccessibilityService的使用
+---
+title: Android辅助功能AccessibilityService的使用
+date: 2016-11-17
+tags: [Android, AccessibilityService]
+categories: Android
+description:
+---
+Android辅助功能AccessibilityService的使用
+<!--more-->
 
 ## AccessibilityService官方简介：  
 > The classes in this package are used for development of accessibility service that provide alternative or augmented feedback to the user.  
@@ -158,7 +160,7 @@ public class MyService extends AccessibilityService {
          android:settingsActivity="packname.android.accessibility.ServiceSettingsActivity" packname写自己App的包名
     -->
 ```
-> 事件类型（EventType）：
+> 事件类型（EventType）：  
 ```
         #TYPES_ALL_MASK：所有类型
         #TYPE_VIEW_CLICKED ：单击

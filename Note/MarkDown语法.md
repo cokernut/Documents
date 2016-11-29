@@ -1,9 +1,12 @@
-Title: MarkDown语法
-Date: 2016-09-18
-Tags: MarkDown
-Slug: Markdown_grammar
-Authors: Cokernut
-Summary: MarkDown基础语法学习与练习
+---
+title: MarkDown基础语法学习与练习
+date: 2016-09-18
+tags: [MarkDown]
+categories: MarkDown
+description:
+---
+MarkDown基础语法学习与练习
+<!--more-->
 
 ## 代码
 

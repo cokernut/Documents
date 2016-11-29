@@ -1,13 +1,15 @@
-Title: React Native嵌入Android原生项目中
-Date: 2016-11-25
-Modified: 2016-11-25
-Tags: Android,recyclerview
-Slug: android_React_Native_to_Native
-Authors: Cokernut
-Summary: React Native嵌入Android原生项目中
+---
+title: React Native嵌入Android原生项目中
+date: 2016-11-25
+tags: [Android, React Native]
+categories: Android
+description:
+---
+React Native嵌入Android原生项目中
+<!--more-->
 
 ## 开发环境准备
-首先你要搭建好React Native for Android开发环境， 没有搭建好的可以参考：[React Native for Android Windows环境搭建](http://cokernut.top/Android_React_Native_Windows_Environment.html)  
+首先你要搭建好React Native for Android开发环境， 没有搭建好的可以参考：[React Native for Android Windows环境搭建](http://cokernut.top/2016/11/23/Android/React%20Native%20for%20Android%20Windows%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/)  
 
 ## 用Android Studio新建Android原生项目
 我创建了一个名叫ReactNativeDemo的原生项目。
@@ -23,8 +25,8 @@ Summary: React Native嵌入Android原生项目中
 
 ## 针对上面三条命令的解释
 ### npm init
-![图片](images/Android/android_React_Native_to_Native/1.png "图片")  
-![图片](images/Android/android_React_Native_to_Native/2.png "图片")  
+![图片](/images/Android/React_Native_to_Native/1.png "图片")  
+![图片](/images/Android/React_Native_to_Native/2.png "图片")  
 注意:  
 name的填写由图可知填默认的是不行的，它的要求是不能有大写字母并且不能以数字开头；  
 entry point的填写入口文件名称，默认的是index.js，我们建立的入口文件是index.android.js，所以填写index.android.js。只要填写的名称与自己定义的入口文件名称一致就行。  
@@ -58,9 +60,9 @@ entry point的填写入口文件名称，默认的是index.js，我们建立的�
 ```
 
 ### npm install --save react react-native
-![图片](images/Android/android_React_Native_to_Native/3.png "图片")  
-![图片](images/Android/android_React_Native_to_Native/4.png "图片")  
-![图片](images/Android/android_React_Native_to_Native/5.png "图片")  
+![图片](/images/Android/React_Native_to_Native/3.png "图片")  
+![图片](/images/Android/React_Native_to_Native/4.png "图片")  
+![图片](/images/Android/React_Native_to_Native/5.png "图片")  
 
 ### curl -o .flowconfig https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig  
 
@@ -71,7 +73,8 @@ curl是利用URL语法在命令行方式下工作的开源文件传输工具。�
 .flowconfig下载下来复制到项目根目录，或者是在项目根目录下新建一个.flowconfig文件用浏览器访问这个网址其中的内容把其中的内容复制到文件当中。
 
 ## 建立index.android.js文件
-在项目的根目录建立index.android.js文件并把下面的代码复制进去：
+在项目的根目录建立index.android.js文件并把下面的代码复制进去：  
+
 ```JavaScript
 'use strict';
 
@@ -110,6 +113,7 @@ AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
 ## 添加依赖
 
 在项目的根目录的build.gradle中加入：
+
 ```gradle
 allprojects {
     repositories {
@@ -125,7 +129,7 @@ allprojects {
 新版的React Native只在npm里发布，所以你需要增加一下依赖包的源。在编译完后，检查项目External Libraries的
 react-native版本如果为0.20.1，则说明maven的依赖源没有添加成功。这时候应该是maven的路径出问题了，你要检查
 路径是否正确，正确的结果为：  
-![图片](images/Android/android_React_Native_to_Native/6.png "图片")  
+![图片](/images/Android/React_Native_to_Native/6.png "图片")  
 
 在项目的模块(app)中的build.gradle文件中添加：  
 文件头添加（可选）：
@@ -138,7 +142,7 @@ apply from: "$rootDir/node_modules/react-native/react.gradle"
      ...
      compile "com.facebook.react:react-native:+"
  }
-```  
+```
 如果你想总是使用一个特定的版本，你需要把+替换成你已经下载的React Native的版本号，
 这个版本号应该与package.json中的react-native的版本号("react-native": "^0.38.0")一致的。如本例中的0.38.0：  
 ```
@@ -150,8 +154,9 @@ apply from: "$rootDir/node_modules/react-native/react.gradle"
 
 ## 添加原生Activity文件：
 
-> MyReactActivity
-```Java
+> MyReactActivity  
+
+```java
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -238,7 +243,8 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 ```
 
 ## AndroidManifest.xml相关
-> AndroidManifest.xml
+> AndroidManifest.xml  
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -278,7 +284,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 ```
 有悬浮窗权限才能显示：  
-![图片](images/Android/android_React_Native_to_Native/7.png "图片")    
+![图片](/images/Android/React_Native_to_Native/7.png "图片")    
 
 注册MyReactActivity：注意主题为Theme.AppCompat.Light.NoActionBar  
 ```
@@ -289,7 +295,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 </activity>
 ```
 开发设置界面：  
-![图片](images/Android/android_React_Native_to_Native/8.png "图片")     
+![图片](/images/Android/React_Native_to_Native/8.png "图片")     
 
 ``` 
 <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
@@ -301,7 +307,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 在项目的根目录下运行：
 > npm start  
 
-![图片](images/Android/android_React_Native_to_Native/9.png "图片")     
+![图片](/images/Android/React_Native_to_Native/9.png "图片")     
 
 这个命令运行的是我们package.json中配置的：
 ```
@@ -320,8 +326,8 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 如果你使用的是Android studio为你构建而不是Gradle构建(gradlew installDebug)，你要确保你在安装应用之前运行了npm start。
 以防止它们之间出现冲突。  
 效果：  
-![图片](images/Android/android_React_Native_to_Native/15.png "图片")
-![图片](images/Android/android_React_Native_to_Native/16.png "图片")  
+![图片](/images/Android/React_Native_to_Native/15.png "图片")
+![图片](/images/Android/React_Native_to_Native/16.png "图片")  
 
 ### 在Android Studio中打包成独立安装程序
 
@@ -331,9 +337,9 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 > react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output app/src/main/assets/index.android.bundle --assets-dest app/src/main/res/  
 
 app/src/main根据实际情况改为自己项目中的目录，参考assets文件夹的目录。  
-![图片](images/Android/android_React_Native_to_Native/11.png "图片")  
+![图片](/images/Android/React_Native_to_Native/11.png "图片")  
 结果为：  
-![图片](images/Android/android_React_Native_to_Native/10.png "图片")   
+![图片](/images/Android/React_Native_to_Native/10.png "图片")   
 如果报错： 
 > ENOENT: no such file or directory  
 
@@ -358,7 +364,7 @@ app/src/main根据实际情况改为自己项目中的目录，参考assets文�
 > android.useDeprecatedNdk=true.  
 
 2. 在项目的模块(app)中的build.gradle文件中添加:
-```
+```json
 android {
     ...
     defaultConfig {
@@ -390,7 +396,7 @@ release模式: 修改完js代码需要重新生成index.android.bundle 文件，
 
 #### 其他方案：   
 方案1. 修改package.json文件如下：
-```
+```json
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output app/src/main/assets/index.android.bundle --assets-dest app/src/main/res/"
@@ -408,15 +414,15 @@ release模式: 修改完js代码需要重新生成index.android.bundle 文件，
 这个方法我的没成功，仅供参考。
 
 ### 错误
-![图片](images/Android/android_React_Native_to_Native/12.png "图片")   
+![图片](/images/Android/React_Native_to_Native/12.png "图片")   
 #### 解决方法：    
 把Android Studio自动生成的文件夹androidTest和test删除，并修改项目的模块(app)的build.gradle文件：  
 #### 修改前：  
-![图片](images/Android/android_React_Native_to_Native/13.png "图片")  
+![图片](/images/Android/React_Native_to_Native/13.png "图片")  
 #### 修改后：  
-![图片](images/Android/android_React_Native_to_Native/14.png "图片")     
+![图片](/images/Android/React_Native_to_Native/14.png "图片")     
 
 
-### 其他问题可以参考[React Native for Android Windows环境搭建](http://cokernut.top/Android_React_Native_Windows_Environment.html)    
+### 其他问题可以参考[React Native for Android Windows环境搭建](http://cokernut.top/2016/11/23/Android/React%20Native%20for%20Android%20Windows%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/)    
 
 <font size=5>[源代码](https://github.com/cokernut/ReactNativeToNative)</font>

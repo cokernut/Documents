@@ -1,10 +1,12 @@
-Title: RecyclerView的基本用法
-Date: 2016-10-25
-Modified: 2016-10-25
-Tags: Android,recyclerview
-Slug: android_recyclerView_base
-Authors: Cokernut
-Summary: RecyclerView的介绍与基本用法
+---
+title: RecyclerView的介绍与基本用法
+date: 2016-10-25
+tags: [Android, Recyclerview]
+categories: Android
+description:
+---
+RecyclerView的介绍与基本用法
+<!--more-->
 
 RecyclerView是Google在发布Android L时在support-v7包中添加的一个新组件，旨在用来替代ListView。RecyclerView的灵活性要比ListView更好。  
 RecyclerView与ListView原理是类似的：都是仅仅维护少量的View并且可以展示大量的数据集。  
@@ -33,10 +35,10 @@ RecyclerView.ViewHolder      |承载Item视图的子视图
 RecyclerView.LayoutManager   |负责Item视图的布局
 RecyclerView.ItemDecoration  |为每个Item视图添加子视图，在Demo中被用来绘制Divider
 RecyclerView.ItemAnimator    |负责添加、删除数据时的动画效果
-                             |
 
 ## RecyclerView的基本用法
 1、因为RecyclerView是support-v7中的控件，要使用的话我们首先要在build.gradle文件中添加RecyclerView的依赖，添加后我们就能在我们的项目中使用RecyclerView控件了：
+
 ```gradle
 dependencies {
     ....
@@ -52,6 +54,7 @@ dependencies {
     android:scrollbars="none"/>
 ```
 3、对RecyclerView进行获取并设置：
+
 ```java
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -86,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
-Adapter:
+Adapter:  
+
 ```java
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
@@ -198,6 +202,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> imp
 }
 ```
 因为RecyclerView默认没有实现Item的点击事件，所以Item的点击事件需要我们自己来设置，在上面的代码中我们也可以看出来：
+
 ```java
 private OnItemClickLitener mOnItemClickLitener;
 

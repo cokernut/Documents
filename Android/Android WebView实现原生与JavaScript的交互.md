@@ -1,10 +1,12 @@
-Title: Android WebView实现原生与JavaScript的交互
-Date: 2016-10-12
-Modified: 2016-10-12
-Tags: Android,WebView
-Slug: android_webview_native_javascript_interaction
-Authors: Cokernut
-Summary: Android WebView实现原生与JavaScript的交互
+---
+title: Android WebView实现原生与JavaScript的交互
+date: 2016-10-12
+tags: [Android, WebView]
+categories: Android
+description:
+---
+Android WebView实现原生与JavaScript的交互
+<!--more-->
 
 在现在的Android开发中，为了追求开发的效率以及移植的便利性，越来越多的开发者会在App中使用WebView
 作为部分业务内容展示与交互的主要载体。那么在这种Hybrid App中，难免就会遇到网页与Java
@@ -17,7 +19,8 @@ Summary: Android WebView实现原生与JavaScript的交互
 + 通过WebView注入JavaScript的方式来实现原生调用网页中的功能
 
 ## 实现步骤：  
-1、 自定义WebView
+1、 自定义WebView  
+
 ```java
 public class MyWebView extends WebView {
 
@@ -131,7 +134,8 @@ public class MyWebView extends WebView {
 }
 ```
 2、使用自定义WebView来实现功能
-> 布局文件：
+> 布局文件：  
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"  
@@ -192,7 +196,9 @@ public class MyWebView extends WebView {
   
 </RelativeLayout>  
 ```
-> WebViewActivity:
+
+> WebViewActivity:  
+
 ```java
 public class WebViewActivity extends AppCompatActivity implements MyWebView.WebViewInterface, View.OnClickListener {
 
@@ -318,5 +324,5 @@ public class WebViewActivity extends AppCompatActivity implements MyWebView.WebV
 </html>
 ```
 效果图:  
-![效果图](images/Android/android_webview_native_javascript_interaction/1.png "效果图")  
+![效果图](/images/Android/Webview_native_javascript_interaction/1.png "效果图")  
 <font size="5">[源代码](https://github.com/cokernut/CustomWebView)</font>
