@@ -69,8 +69,7 @@ entry point的填写入口文件名称，默认的是index.js，我们建立的�
 curl是利用URL语法在命令行方式下工作的开源文件传输工具。它被广泛应用在Unix、多种Linux发行版中，并且有DOS和Win32、Win64下的移植版本。
 所以可知上面这句话的意思是在对应网址下下载.flowconfig文件。  
 在windows下我们要使用curl命令会提示:curl不是内部和外部命令，也不是可执行文件或批处理命令。。。
-我们在windows下要使用curl命令比较麻烦。解决方法就是我们用下载工具从https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig上把
-.flowconfig下载下来复制到项目根目录，或者是在项目根目录下新建一个.flowconfig文件用浏览器访问这个网址其中的内容把其中的内容复制到文件当中。
+我们在windows下要使用curl命令比较麻烦。解决方法就是我们用下载工具从https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig  上把.flowconfig下载下来复制到项目根目录，或者是在项目根目录下新建一个.flowconfig文件用浏览器访问这个网址其中的内容把其中的内容复制到文件当中。
 
 ## 建立index.android.js文件
 在项目的根目录建立index.android.js文件并把下面的代码复制进去：  
@@ -347,6 +346,62 @@ app/src/main根据实际情况改为自己项目中的目录，参考assets文�
 
 现在你可以对你的应用程序进行打包发布了。
 
+## 更新React Naive版本
+
+1. 打开项目目录下的package.json文件，然后在dependencies模块下找到react-native，将当前版本号改到最新（或指定）版本号，如：
+
+    ```json
+    {
+    "name": "reactnativedemo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.android.js",
+    "scripts": {
+        "start": "node node_modules/react-native/local-cli/cli.js start"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "react": "^15.4.1",
+        "react-native": "^0.38.0"
+    }
+    }
+    ```
+    react-native的npm包的最新版本可以去[这里](https://www.npmjs.com/package/react-native)查看，或使用npm info react-native命令查看。
+
+2. 项目的根目录执行：
+
+    > npm install
+
+    安装最新的React Native版本,成功后可能会出现如下类似警告：
+
+    > npm WARN react-native@0.38.0 requires a peer of react@15.4.1 but none was installed.  
+
+3. 根据警告执行：
+
+    > npm install –save react@15.4.1
+
+    更新最新的React且项目下package.json 的 dependencies下的react版本会被修改为 15.4.1
+
+4. 新版本的npm包通常还会包含一些动态生成的文件，这些文件是在运行react-native init创建新
+项目时生成的，比如iOS和Android的项目文件。为了使老项目的项目文件也能得到更新
+（不重新init），你需要在命令行中运行：
+
+    > react-native upgrade  
+
+    这一命令会检查最新的项目模板，然后进行如下操作：
+
+    + 如果是新添加的文件，则直接创建。
+    + 如果文件和当前版本的文件相同，则跳过。
+    + 如果文件和当前版本的文件不同，则会提示你一些选项：查看两者的不同，选择保留你的版本或是用新的模板覆盖。你可以按下h键来查看所有可以使用的命令。
+
+    注意：如果你有修改原生代码，那么在使用upgrade升级前，先备份，再覆盖。覆盖完成后，使用比对工具找出差异，将你之前修改的代码逐步搬运到新文件中。
+
+5. 执行：
+
+    > react-native -v
+
+    通过如上命令来看最新的版本，检测是否升级成功！
 
 ## 问题与解决方案
 

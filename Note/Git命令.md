@@ -9,7 +9,7 @@ Git命令
 <!--more-->
 
 # git知识点
-## create a new repository on the command line
+## 用命令行创建一个新的存储库
 ```
 echo "# Documents" >> README.md
 git init

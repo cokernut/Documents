@@ -70,7 +70,7 @@ React Native的命令行工具用于执行创建、初始化、更新项目、�
 进入项目目录（上面的Project目录）启动React Native Server
 > react-native start  
 
-可以用浏览器访问http://localhost:8081/index.android.bundle?platform=android看看是否可以看到打包后的脚本。第一次访问通常需要十几秒，并且在packager的命令行可以看到进度条
+可以用浏览器访问http://localhost:8081/index.android.bundle?platform=android  看看是否可以看到打包后的脚本。第一次访问通常需要十几秒，并且在packager的命令行可以看到进度条
 
 ## 运行模拟器
 
@@ -160,7 +160,7 @@ Debug server host & port for device中填入的应该是VirtualBox Host-Only Net
 
 ## 安卓调试
 
-打开Chrome，访问 http://localhost:8081/debugger-ui，应当能看到一个页面。按F12打开开发者菜单选择Sources勾选Pause On Caught Exceptions（如图）
+打开Chrome，访问 http://localhost:8081/debugger-ui  ，应当能看到一个页面。按F12打开开发者菜单选择Sources勾选Pause On Caught Exceptions（如图）
 
 在模拟器或真机菜单中选择Debug JS，即可开始调试  
 ![效果](/images/Android/React_Native_Windows_Environment/8.png "效果")  
