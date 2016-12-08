@@ -368,6 +368,8 @@ class Root extends Component {
         <TextInput
           style={{height: 40}}
           placeholder="Type here to translate!"
+          // 如果key和value的字面一样，那么可以简写成一个，等同于下面的写法：
+          // this.setState({text: text});
           onChangeText={(text) => this.setState({text})}
         />
         <Text style={{padding: 10, fontSize: 42}}>
@@ -553,7 +555,7 @@ return (
     </ScrollView>
   );
   ...
-  var styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     contentContainer: {
       paddingVertical: 20
     }
