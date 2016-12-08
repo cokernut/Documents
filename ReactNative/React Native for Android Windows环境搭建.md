@@ -2,7 +2,7 @@
 title: React Native for Android Windows环境搭建
 date: 2016-11-23
 tags: [Android, React Native]
-categories: [Android, React Native]
+categories: React Native
 description:
 ---
 React Native for Android Windows环境搭建

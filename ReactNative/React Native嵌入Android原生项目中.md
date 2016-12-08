@@ -2,7 +2,7 @@
 title: React Native嵌入Android原生项目中
 date: 2016-11-25
 tags: [Android, React Native]
-categories: [Android, React Native]
+categories: React Native
 description:
 ---
 React Native嵌入Android原生项目中
