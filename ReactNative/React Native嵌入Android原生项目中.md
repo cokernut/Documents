@@ -433,7 +433,7 @@ AppRegistry.registerComponent('ReactNativeView', () => Root);
 有悬浮窗权限才能显示：  
 ![图片](/images/ReactNative/React_Native_to_Native/7.png "图片")    
 
-如果遇到React Native的一些组件不能使用可以在注册Activity时添加主题为Theme.AppCompat.Light.NoActionBar，因为一些组件依赖于这个主题。
+如果遇到React Native的一些组件不能使用可以尝试在注册Activity时添加主题为Theme.AppCompat.Light.NoActionBar，看能否解决问题，因为一些组件依赖于这个主题:
 ```
 <activity
     android:name=".MyReactNativeActivity"
