@@ -25,8 +25,8 @@ React Native嵌入Android原生项目中
 
 ## 针对上面三条命令的解释
 ### npm init
-![图片](/images/Android/React_Native_to_Native/1.png "图片")  
-![图片](/images/Android/React_Native_to_Native/2.png "图片")  
+![图片](/images/ReactNative/React_Native_to_Native/1.png "图片")  
+![图片](/images/ReactNative/React_Native_to_Native/2.png "图片")  
 注意:  
 name的填写由图可知填默认的是不行的，它的要求是不能有大写字母并且不能以数字开头；  
 entry point的填写入口文件名称，默认的是index.js，我们建立的入口文件是index.android.js，所以填写index.android.js。只要填写的名称与自己定义的入口文件名称一致就行。  
@@ -60,9 +60,9 @@ entry point的填写入口文件名称，默认的是index.js，我们建立的�
 ```
 
 ### npm install --save react react-native
-![图片](/images/Android/React_Native_to_Native/3.png "图片")  
-![图片](/images/Android/React_Native_to_Native/4.png "图片")  
-![图片](/images/Android/React_Native_to_Native/5.png "图片")  
+![图片](/images/ReactNative/React_Native_to_Native/3.png "图片")  
+![图片](/images/ReactNative/React_Native_to_Native/4.png "图片")  
+![图片](/images/ReactNative/React_Native_to_Native/5.png "图片")  
 
 ### curl -o .flowconfig https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig  
 
@@ -85,7 +85,7 @@ import {
   View
 } from 'react-native';
 
-class HelloWorld extends React.Component {
+class Root extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -106,7 +106,7 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
+AppRegistry.registerComponent('ReactNativeView', () => Root);
 ```
 
 ## 添加依赖
@@ -128,7 +128,7 @@ allprojects {
 新版的React Native只在npm里发布，所以你需要增加一下依赖包的源。在编译完后，检查项目External Libraries的
 react-native版本如果为0.20.1，则说明maven的依赖源没有添加成功。这时候应该是maven的路径出问题了，你要检查
 路径是否正确，正确的结果为：  
-![图片](/images/Android/React_Native_to_Native/6.png "图片")  
+![图片](/images/ReactNative/React_Native_to_Native/6.png "图片")  
 
 在项目的模块(app)中的build.gradle文件中添加：  
 文件头添加（可选）：
@@ -152,6 +152,8 @@ apply from: "$rootDir/node_modules/react-native/react.gradle"
 ```
 
 ## 添加原生Activity文件：
+
+### 官方教程的写法：
 
 > MyReactActivity  
 
@@ -180,11 +182,12 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android") //对应index.android.js
                 .addPackage(new MainReactPackage())
-                .setUseDeveloperSupport(BuildConfig.DEBUG)
+                //.setUseDeveloperSupport(BuildConfig.DEBUG) //开发者支持，BuildConfig.DEBUG的值默认是false，无法使用开发者菜单
+                .setUseDeveloperSupport(true) //开发者支持,开发的时候要设置为true，不然无法使用开发者菜单
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
-        //这里的HelloWorld对应index.android.js中AppRegistry.registerComponent('HelloWorld', () => HelloWorld)的HelloWorld
-        mReactRootView.startReactApplication(mReactInstanceManager, "HelloWorld", null);
+        //这里的ReactNativeView对应index.android.js中AppRegistry.registerComponent('ReactNativeView', () => ReactNativeView)的ReactNativeView
+        mReactRootView.startReactApplication(mReactInstanceManager, "ReactNativeView", null);
         setContentView(mReactRootView);
     }
 
@@ -240,20 +243,161 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
     }
 }
 ```
+### <font color="#EF7A7A">注意：</font>
+
+官方教程的写法中这里：
+
+```java
+ @Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    mReactRootView = new ReactRootView(this);
+    mReactInstanceManager = ReactInstanceManager.builder()
+            .setApplication(getApplication())
+            .setBundleAssetName("index.android.bundle")
+            .setJSMainModuleName("index.android") //对应index.android.js
+            .addPackage(new MainReactPackage())
+            //.setUseDeveloperSupport(BuildConfig.DEBUG) //开发者支持，BuildConfig.DEBUG的值默认是false，无法使用开发者菜单
+            .setUseDeveloperSupport(true) //开发者支持,开发的时候要设置为true，不然无法使用开发者菜单
+            .setInitialLifecycleState(LifecycleState.RESUMED)
+            .build();
+    //这里的ReactNativeView对应index.android.js中AppRegistry.registerComponent('ReactNativeView', () => ReactNativeView)的ReactNativeView
+    mReactRootView.startReactApplication(mReactInstanceManager, "ReactNativeView", null);
+    setContentView(mReactRootView);
+}
+```
+的setUseDeveloperSupport(BuildConfig.DEBUG)方法，设置开发者支持，BuildConfig.DEBUG的值默认是false，无法使用开发者支持（开发者菜单、即时预览等），所以我们要把BuildConfig.DEBUG改为true。
+
+### 另一种原生Activity写法
+
+> MyReactNativeActivity
+
+```java
+import com.facebook.react.ReactActivity;
+
+public class MyReactNativeActivity extends ReactActivity {
+    /**
+     * 这里的ReactNativeView对应index.android.js中AppRegistry.registerComponent('ReactNativeView', () => Root)的ReactNativeView
+     */
+    @Override
+    protected String getMainComponentName() {
+        return "ReactNativeView";
+    }
+}
+```
+
+### 两种原生Activity写法的对比：
+
+##### 第一种（官方例子的）
+
+这种写法的优势是可以利用React Native来写我们界面中的某一块区域，就是利用原生布局的addView()方法把mReactRootView加入到布局中，比如：
+
+> activity_my_react.xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#9DB16D"
+        android:textSize="40sp"
+        android:text="原生控件TextView" />
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+```
+
+> MyReactActivity修改
+
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_my_react);
+    mReactLayout = (LinearLayout) findViewById(R.id.layout);
+
+    mReactRootView = new ReactRootView(this);
+    mReactInstanceManager = ReactInstanceManager.builder()
+            .setApplication(getApplication())
+            .setBundleAssetName("index.android.bundle")
+            .setJSMainModuleName("index.android")//对应index.android.js
+            .addPackage(new MainReactPackage())
+            //.setUseDeveloperSupport(BuildConfig.DEBUG) //开发者支持，BuildConfig.DEBUG的值默认是false，无法使用开发者菜单
+            .setUseDeveloperSupport(true) //开发者支持,开发的时候要设置为true，不然无法使用开发者菜单
+            .setInitialLifecycleState(LifecycleState.RESUMED)
+            .build();
+    //这里的ReactNativeView对应index.android.js中AppRegistry.registerComponent('ReactNativeView', () => Root)的ReactNativeView
+    mReactRootView.startReactApplication(mReactInstanceManager, "ReactNativeView", null);
+    mReactLayout.addView(mReactRootView);
+}
+```
+
+> index.android.js
+
+```js
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet
+} from 'react-native'
+
+export default class Root extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>React Native组件</Text>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#65A35F',
+  },
+  welcome: {
+    fontSize: 40,
+    textAlign: 'center',
+    margin: 10,
+  }
+});
+
+AppRegistry.registerComponent('ReactNativeView', () => Root);
+```
+
+#### 第二种
+
+这种方式是优势是写法简单。但是无法局部使用React Native来布局。
 
 ## AndroidManifest.xml相关
+
 > AndroidManifest.xml  
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="top.cokernut.reactnativedemo">
+    package="top.cokernut.reactnativetonative">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
+        android:name=".MyApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -266,7 +410,11 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
         </activity>
         <activity
             android:name=".MyReactActivity"
-            android:label="@string/app_name"
+            android:label="MyReactActivity">
+        </activity>
+        <activity
+            android:name=".MyReactNativeActivity"
+            android:label="MyReactNativeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
@@ -283,18 +431,18 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 ```
 有悬浮窗权限才能显示：  
-![图片](/images/Android/React_Native_to_Native/7.png "图片")    
+![图片](/images/ReactNative/React_Native_to_Native/7.png "图片")    
 
-注册MyReactActivity：注意主题为Theme.AppCompat.Light.NoActionBar  
+如果遇到React Native的一些组件不能使用可以在注册Activity时添加主题为Theme.AppCompat.Light.NoActionBar，因为一些组件依赖于这个主题。
 ```
 <activity
-    android:name=".MyReactActivity"
+    android:name=".MyReactNativeActivity"
     android:label="@string/app_name"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 </activity>
 ```
 开发设置界面：  
-![图片](/images/Android/React_Native_to_Native/8.png "图片")     
+![图片](/images/ReactNative/React_Native_to_Native/8.png "图片")     
 
 ``` 
 <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
@@ -303,10 +451,11 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 ## 运行应用
 
 ### 启动开发服务器
+
 在项目的根目录下运行：
 > npm start  
 
-![图片](/images/Android/React_Native_to_Native/9.png "图片")     
+![图片](/images/ReactNative/React_Native_to_Native/9.png "图片")     
 
 这个命令运行的是我们package.json中配置的：
 ```
@@ -318,17 +467,23 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 第一次访问通常需要十几秒，并且在命令行可以看到进度条。
 
 ### 构建与运行你的程序
+
 两种方法：  
-1. 在命令行中项目目录下运行gradlew installDebug  
-2. 直接利用Android Studio像平常一样运行项目  
+1. 直接利用Android Studio像平常一样运行项目  
+2. 在命令行中项目目录下运行gradlew installDebug  
 
 如果你使用的是Android studio为你构建而不是Gradle构建(gradlew installDebug)，你要确保你在安装应用之前运行了npm start。
 以防止它们之间出现冲突。  
 效果：  
-![图片](/images/Android/React_Native_to_Native/15.png "图片")
-![图片](/images/Android/React_Native_to_Native/16.png "图片")  
+![图片](/images/ReactNative/React_Native_to_Native/15.png "图片")
 
-### 在Android Studio中打包成独立安装程序
+MyReactActivity:  
+![图片](/images/ReactNative/React_Native_to_Native/16.png "图片") ![图片](/images/ReactNative/React_Native_to_Native/17.png "图片")   
+
+MyReactNativeActivity:  
+![图片](/images/ReactNative/React_Native_to_Native/18.png "图片") ![图片](/images/ReactNative/React_Native_to_Native/19.png "图片")   
+
+### 在Android Studio中打包成独立安装程序（release）
 
 你可以使用Android Studio来创建你的App的发布版本！像以前创建原生应用程序的发布版本一样简单，只是有一个额外步骤：
 在你打包你的发布版本之前要创建一个bundle文件，这个bundle文件会创建在项目的assets目录中，并且这个文件会包含在你的apk包中，
@@ -336,9 +491,9 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 > react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output app/src/main/assets/index.android.bundle --assets-dest app/src/main/res/  
 
 app/src/main根据实际情况改为自己项目中的目录，参考assets文件夹的目录。  
-![图片](/images/Android/React_Native_to_Native/11.png "图片")  
+![图片](/images/ReactNative/React_Native_to_Native/11.png "图片")  
 结果为：  
-![图片](/images/Android/React_Native_to_Native/10.png "图片")   
+![图片](/images/ReactNative/React_Native_to_Native/10.png "图片")   
 如果报错： 
 > ENOENT: no such file or directory  
 
@@ -346,62 +501,69 @@ app/src/main根据实际情况改为自己项目中的目录，参考assets文�
 
 现在你可以对你的应用程序进行打包发布了。
 
+#### debug模式release模式React Native JS代码调试的区别:
+
+debug模式: 修改完js代码打开开发者菜单点击Reload就可以看到更新后的效果，或者是开启Live Reload(点击Enable Live Reload)
+这样我们修改了js文件只要保存就会自动Reload。
+release模式: 修改完js代码需要重新生成index.android.bundle 文件，点击run之后才能看到效果。因为正式版发布后是无法
+依赖本地服务器去更新index.android.bundle，需要把index.android.bundle打包到apk中才能运行。
+
 ## 更新React Naive版本
 
-1. 打开项目目录下的package.json文件，然后在dependencies模块下找到react-native，将当前版本号改到最新（或指定）版本号，如：
+1.打开项目目录下的package.json文件，然后在dependencies模块下找到react-native，将当前版本号改到最新（或指定）版本号，如：
 
-    ```json
-    {
-    "name": "reactnativedemo",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.android.js",
-    "scripts": {
-        "start": "node node_modules/react-native/local-cli/cli.js start"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "react": "^15.4.1",
-        "react-native": "^0.38.0"
-    }
-    }
-    ```
-    react-native的npm包的最新版本可以去[这里](https://www.npmjs.com/package/react-native)查看，或使用npm info react-native命令查看。
+```json
+{
+"name": "reactnativedemo",
+"version": "1.0.0",
+"description": "",
+"main": "index.android.js",
+"scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+},
+"author": "",
+"license": "ISC",
+"dependencies": {
+    "react": "^15.4.1",
+    "react-native": "^0.38.0"
+}
+}
+```
+react-native的npm包的最新版本可以去[这里](https://www.npmjs.com/package/react-native)查看，或使用npm info react-native命令查看。
 
-2. 项目的根目录执行：
+2.项目的根目录执行：
 
-    > npm install
+> npm install
 
-    安装最新的React Native版本,成功后可能会出现如下类似警告：
+安装最新的React Native版本,成功后可能会出现如下类似警告：
 
-    > npm WARN react-native@0.38.0 requires a peer of react@15.4.1 but none was installed.  
+> npm WARN react-native@0.38.0 requires a peer of react@15.4.1 but none was installed.  
 
-3. 根据警告执行：
+3.根据警告执行：
 
-    > npm install –save react@15.4.1
+> npm install –save react@15.4.1
 
-    更新最新的React且项目下package.json 的 dependencies下的react版本会被修改为 15.4.1
+更新最新的React且项目下package.json 的 dependencies下的react版本会被修改为 15.4.1
 
-4. 新版本的npm包通常还会包含一些动态生成的文件，这些文件是在运行react-native init创建新
+4.新版本的npm包通常还会包含一些动态生成的文件，这些文件是在运行react-native init创建新
 项目时生成的，比如iOS和Android的项目文件。为了使老项目的项目文件也能得到更新
 （不重新init），你需要在命令行中运行：
 
-    > react-native upgrade  
+> react-native upgrade  
 
-    这一命令会检查最新的项目模板，然后进行如下操作：
+这一命令会检查最新的项目模板，然后进行如下操作：
 
-    + 如果是新添加的文件，则直接创建。
-    + 如果文件和当前版本的文件相同，则跳过。
-    + 如果文件和当前版本的文件不同，则会提示你一些选项：查看两者的不同，选择保留你的版本或是用新的模板覆盖。你可以按下h键来查看所有可以使用的命令。
++ 如果是新添加的文件，则直接创建。
++ 如果文件和当前版本的文件相同，则跳过。
++ 如果文件和当前版本的文件不同，则会提示你一些选项：查看两者的不同，选择保留你的版本或是用新的模板覆盖。你可以按下h键来查看所有可以使用的命令。
 
-    注意：如果你有修改原生代码，那么在使用upgrade升级前，先备份，再覆盖。覆盖完成后，使用比对工具找出差异，将你之前修改的代码逐步搬运到新文件中。
+注意：如果你有修改原生代码，那么在使用upgrade升级前，先备份，再覆盖。覆盖完成后，使用比对工具找出差异，将你之前修改的代码逐步搬运到新文件中。
 
-5. 执行：
+5.执行：
 
-    > react-native -v
+> react-native -v
 
-    通过如上命令来看最新的版本，检测是否升级成功！
+通过如上命令来看最新的版本，检测是否升级成功！
 
 ## 问题与解决方案
 
@@ -419,6 +581,7 @@ app/src/main根据实际情况改为自己项目中的目录，参考assets文�
 > android.useDeprecatedNdk=true.  
 
 2. 在项目的模块(app)中的build.gradle文件中添加:
+
 ```json
 android {
     ...
@@ -436,46 +599,18 @@ android {
 ```
 
 ### 错误：Could not get BatchedBridge,make sure your bundle is packaged correctly
-可能是build模式选择了release模式，引发的这个错误，你可以检查一下是否是debug模式，如果不是改为debug再试一下。
-因为正式版需要你创建 React Native bundle文件(index.android.bundle)存放到本地 asserts 目录,
-参考上文（在Android Studio中打包成独立安装程序），运行生成bundle文件命令之后再点击Android Studio的run按钮运行程序即可正常显示。
 
-注意：这个方法有一个弊端，因为正式版，所以修改了页面js文件之后，不能像单独的React Native项目一样可以不重新运行项目只需要点击Reload
-即可立刻看到修改的js页面的效果，想重新看到效果需要再运行一遍生成bundle文件命令然后点击run按钮重新运行才能看到结果。这个方法可以不开启
-开发服务器也能看到js页面效果，因为js页面是通过bundle文件来运行的，就像正式的apk一样可以独立运行。  
-debug模式release模式React Native JS代码调试的区别:    
-debug模式: 修改完js代码打开开发者菜单点击Reload就可以看到更新后的效果，或者是开启Live Reload(点击Enable Live Reload)
-这样我们修改了js文件只要保存就会自动Reload。  
-release模式: 修改完js代码需要重新生成index.android.bundle 文件，点击run之后才能看到效果。因为正式版发布后是无法
-依赖本地服务器去更新index.android.bundle，需要把index.android.bundle打包到apk中才能运行。
-
-#### 其他方案：   
-方案1. 修改package.json文件如下：
-```json
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output app/src/main/assets/index.android.bundle --assets-dest app/src/main/res/"
-  },
-```  
-这个方法我的没成功，仅供参考。    
-
-方案2.在AndroidManifest.xml文件中加入如下权限：
-```
-<android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />  
-<android:uses-permission android:name="android.permission.READ_PHONE_STATE" />  
-<android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />  
-```
-然后开启开发者服务器(npm start)，之后run项目看看是否有结果。
-这个方法我的没成功，仅供参考。
+1. build模式选择了release模式，引发的这个错误，你可以检查一下是否是debug模式，如果不是改为debug再试一下。
+2. ReactInstanceManager的setUseDeveloperSupport(BuildConfig.DEBUG)方法值是否正确，设置开发者支持，BuildConfig.DEBUG的值默认是false，无法使用开发者支持（开发者菜单、即时预览等），所以我们要把BuildConfig.DEBUG改为true。
 
 ### 错误
-![图片](/images/Android/React_Native_to_Native/12.png "图片")   
+![图片](/images/ReactNative/React_Native_to_Native/12.png "图片")   
 #### 解决方法：    
 把Android Studio自动生成的文件夹androidTest和test删除，并修改项目的模块(app)的build.gradle文件：  
 #### 修改前：  
-![图片](/images/Android/React_Native_to_Native/13.png "图片")  
+![图片](/images/ReactNative/React_Native_to_Native/13.png "图片")  
 #### 修改后：  
-![图片](/images/Android/React_Native_to_Native/14.png "图片")     
+![图片](/images/ReactNative/React_Native_to_Native/14.png "图片")     
 
 
 ### 其他问题可以参考[React Native for Android Windows环境搭建](http://cokernut.top/2016/11/23/Android/React%20Native%20for%20Android%20Windows%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/)    
