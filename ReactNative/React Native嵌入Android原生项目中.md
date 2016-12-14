@@ -472,8 +472,7 @@ AppRegistry.registerComponent('ReactNativeView', () => Root);
 1. 直接利用Android Studio像平常一样运行项目  
 2. 在命令行中项目目录下运行gradlew installDebug  
 
-如果你使用的是Android studio为你构建而不是Gradle构建(gradlew installDebug)，你要确保你在安装应用之前运行了npm start。
-以防止它们之间出现冲突。  
+如果你使用的是Android Studio为你构建而不是Gradle构建(gradlew installDebug)，你要确保你在安装应用之前运行了npm start，以防止它们之间出现冲突。  
 效果：  
 ![图片](/images/ReactNative/React_Native_to_Native/15.png "图片")
 

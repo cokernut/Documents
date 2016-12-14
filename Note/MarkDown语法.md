@@ -14,13 +14,13 @@ MarkDown基础语法学习与练习
 
 通常编辑器根据代码片段适配合适的高亮方法，但你也可以用 \`\`\` 包裹一段代码，并指定一种语言
 
-```
-    ```javascript
-    $(document).ready(function () {
-        alert('hello world');
-    }); 
-    ```  
-```
+````
+```javascript
+$(document).ready(function () {
+    alert('hello world');
+}); 
+```  
+````
 支持的语言：actionscript, apache, bash, clojure, cmake, coffeescript, cpp, cs, css, d, delphi, django, erlang, go, haskell, html, http, ini, java, javascript, json, lisp, lua, markdown, matlab, nginx, objectivec, perl, php, python, r, ruby, scala, smalltalk, sql, tex, vbscript, xml
 
 也可以使用 4 空格缩进，再贴上代码，实现相同的的效果
@@ -29,6 +29,12 @@ MarkDown基础语法学习与练习
         yield from range(x, 0, -1)
     yield from range(x)
 ```
+
+### 行内代码块
+
+使用 \`代码` 表示行内代码块。
+
+行内代码块`html`
 
 ## 标题
 
@@ -40,10 +46,16 @@ MarkDown基础语法学习与练习
 标题2
 -----
 
+# 标题
+## 大标题 
+### 小标题 
+# 标题 #
 ## 大标题 ##
 ### 小标题 ###
 ```
+
 ## 粗斜体
+
 ```
 *斜体文本*    _斜体文本_
 **粗体文本**    __粗体文本__
@@ -308,6 +320,173 @@ $$ (x+1)^2 = \class{hidden}{(x+1)(x+1)} $$
 $$
 (x+1)^2 = \cssId{step1}{\style{visibility:hidden}{(x+1)(x+1)}}
 $$
+```
+
+### 行内公式
+```
+这是行内公式`!$ \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,. $`
+```
+### 块公式
+````
+```
+$$\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.$$
+```
+````
+
+## 目录结构
+
+在段落中填写 `[TOC]`或`[toc]` 以显示全文内容的目录结构。  
+或者使用：
+```
+[1.一级目录](#1)
+　[1.1二级目录](#1.1)
+　　[1.1.1三级目录](#1.1.1)
+
+<h2 id='1'> 一级目录 </h2>
+
+<h4 id='1.1'> 二级目录 </h4>
+
+<h5 id='1.1.1'> 三级目录 </h5>
+```
+
+## 定义型列表
+
+名词 1
+:   定义 1（左侧有一个可见的冒号和四个不可见的空格）
+
+代码块 2
+:   这是代码块的定义（左侧有一个可见的冒号和四个不可见的空格）
+
+        代码块（左侧有八个不可见的空格）
+
+## Html 标签
+
+本站支持在 Markdown 语法中嵌套 Html 标签，譬如，你可以用 Html 写一个纵跨两行的表格：
+
+    <table>
+        <tr>
+            <th rowspan="2">值班人员</th>
+            <th>星期一</th>
+            <th>星期二</th>
+            <th>星期三</th>
+        </tr>
+        <tr>
+            <td>李强</td>
+            <td>张明</td>
+            <td>王平</td>
+        </tr>
+    </table>
+
+
+<table>
+    <tr>
+        <th rowspan="2">值班人员</th>
+        <th>星期一</th>
+        <th>星期二</th>
+        <th>星期三</th>
+    </tr>
+    <tr>
+        <td>李强</td>
+        <td>张明</td>
+        <td>王平</td>
+    </tr>
+</table>
+
+## 内嵌图标
+
+本站的图标系统对外开放，在文档中输入
+
+    <i class="icon-weibo"></i>
+
+即显示微博的图标： <i class="icon-weibo icon-2x"></i>
+
+替换 上述 `i 标签` 内的 `icon-weibo` 以显示不同的图标，例如：
+
+    <i class="icon-renren"></i>
+
+即显示人人的图标： <i class="icon-renren icon-2x"></i>
+
+待办事宜 Todo 列表
+
+使用带有 [ ] 或 [x] （未完成或已完成）项的列表语法撰写一个待办事宜列表，并且支持子列表嵌套以及混用Markdown语法，例如：
+
+    - [ ] **1111**
+        - [ ] 1111
+        - [ ] 2222
+        - [x] 3333
+        - [x] 4444
+            - [x] 1111
+            - [x] 2222
+    - [ ] **2222**
+        - [ ] 1111
+        - [ ] 2222
+        - [x] 3333
+        
+对应显示如下待办事宜 Todo 列表：
+        
+- [ ] **1111**
+    - [ ] 1111
+    - [ ] 2222
+    - [x] 3333
+    - [x] 4444
+        - [x] 1111
+        - [x] 2222
+- [ ] **2222**
+    - [ ] 1111
+    - [ ] 2222
+    - [x] 3333
+    
+        
+[^footnote]: 这是一个 *注脚* 的 **文本**。
+
+[^footnote2]: 这是另一个 *注脚* 的 **文本**。
+
+
+### 流程图
+````markdown
+```flow
+st=>start: 开始
+e=>end: 结束
+op=>operation: 操作步骤
+cond=>condition: 是 或者 否?
+
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```
+````
+#### 示例
+
+```flow
+st=>start: Start:>https://www.zybuluo.com
+io=>inputoutput: verification
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+sub=>subroutine: Your Subroutine
+e=>end
+
+st->io->op->cond
+cond(yes)->e
+cond(no)->sub->io
+```
+
+### 序列图
+````markdown
+```sequence
+小明->小李: 你好 小李, 最近怎么样?
+Note right of 小李: 想了想
+小李-->小明: 还是老样子
+```
+````
+
+#### 示例
+
+```seq
+Title: Here is a title
+A->B: Normal line
+B-->C: Dashed line
+C->>D: Open arrow
+D-->>A: Dashed open arrow
 ```
 
 # MarkDown练习
