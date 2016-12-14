@@ -229,7 +229,7 @@ public class MyApplication extends Application implements ReactApplication {
 
 为了让你的功能从JavaScript端访问起来更为方便，通常我们都会把原生模块封装成一个JavaScript模块。这不是必须的，但省下了每次都从NativeModules中获取对应模块的步骤。这个JS文件也可以用于添加一些其他JavaScript端实现的功能。
 
-> AndroidToastModule.js
+> AndroidToast.js
 
 ```js
 import { NativeModules } from 'react-native';
@@ -245,7 +245,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-import AndroidToast from './AndroidToastModule'
+import AndroidToast from './AndroidToast'
 
 class Sample extends Component { 
   _press() {
@@ -405,7 +405,7 @@ import {
   StyleSheet
 } from 'react-native'
 
-import AndroidToast from '../modules/AndroidToastModule'
+import AndroidToast from '../modules/AndroidToast'
 
 class Sample extends Component { 
   constructor(props) {
