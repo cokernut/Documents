@@ -138,9 +138,12 @@ import com.facebook.react.bridge.ReactApplicationContext;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections; 
+import java.util.Collections;
 
-public class ModuleReactPackage implements ReactPackage {
+import top.cokernut.reactnativetonative.modules.ToastModule;
+import top.cokernut.reactnativetonative.reactview.TextViewManager;
+
+public class ReactNativePackage implements ReactPackage {
 
   @Override
   public List<Class<? extends JavaScriptModule>> createJSModules() {
@@ -168,13 +171,13 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.shell.MainReactPackage;
+import com.facebook.react.uimanager.ViewManager;
 import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
-
-import top.cokernut.reactnativetonative.modules.ModuleReactPackage;
 
 public class MyApplication extends Application implements ReactApplication {
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -187,7 +190,7 @@ public class MyApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-                    new ModuleReactPackage()); // <-- 添加这一行，类名替换成你的Package类的名字.
+                    new ReactNativePackage()); // <-- 添加这一行，类名替换成你的Package类的名字.
         }
     };
 
@@ -438,10 +441,10 @@ class Sample extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.touch} onPress={this._press}>
-          <Text style={styles.welcome}>Toast模块回调传值</Text>
+          <Text style={styles.text}>Toast模块回调传值</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.touch} onPress={this._pressPromise}>
-          <Text style={styles.welcome}>Toast模块Promise传值</Text>
+          <Text style={styles.text}>Toast模块Promise传值</Text>
         </TouchableOpacity>
       </View>
     );
@@ -461,7 +464,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#65A35F',
   },
-  welcome: {
+  text: {
     fontSize: 40,
     textAlign: 'center',
     margin: 10,
