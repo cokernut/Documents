@@ -438,9 +438,11 @@ TEMPLATES = [
 
 然后在 模板中我们就可以用 request 了。一般情况下，推荐用 render 而不是用 render_to_response。
 
-#### 获取当前用户：
+#### 获取当前用户
 
-> {{ request.user }}
+```
+{{ request.user }}
+```
 
 如果登陆就显示内容，不登陆就不显示内容：
 
@@ -452,15 +454,19 @@ TEMPLATES = [
 {% endif %}
 ```
 
-#### 获取当前网址：
+#### 获取当前网址
 
-> {{ request.path }}
+```
+{{ request.path }}
+```
 
-#### 获取当前 GET 参数：
+#### 获取当前 GET 参数
 
-> {{ request.GET.urlencode }}
+```
+{{ request.GET.urlencode }}
+```
 
-#### 合并到一起用的一个例子：
+#### 合并到一起用的一个例子
 
 ```
 <a href="{{ request.path }}?{{ request.GET.urlencode }}&delete=1">当前网址加参数 delete</a>
