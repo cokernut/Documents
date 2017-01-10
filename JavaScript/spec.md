@@ -1,6 +1,6 @@
 ---
 title: 读懂 ECMAScript 规格
-date: 2016-12-10 10:42
+date: 2016-10-10 10:42
 tags: [JavaScript, ES6]
 categories: JavaScript
 description: 

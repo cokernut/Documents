@@ -1,6 +1,6 @@
 ---
 title: 函数式编程
-date: 2016-12-10 10:58
+date: 2016-10-10 10:58
 tags: [JavaScript, ES6]
 categories: JavaScript
 description: 

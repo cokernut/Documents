@@ -1,6 +1,6 @@
 ---
 title: 变量的解构赋值
-date: 2016-12-10 10:06
+date: 2016-10-10 10:06
 tags: [JavaScript, ES6]
 categories: JavaScript
 description: 

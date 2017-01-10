@@ -1,6 +1,6 @@
 ---
 title: 编程风格
-date: 2016-12-10 10:40
+date: 2016-10-10 10:40
 tags: [JavaScript, ES6]
 categories: JavaScript
 description: 

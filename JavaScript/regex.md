@@ -1,6 +1,6 @@
 ---
 title: 正则的扩展
-date: 2016-12-10 10:10
+date: 2016-10-10 10:10
 tags: [JavaScript, ES6]
 categories: JavaScript
 description: 

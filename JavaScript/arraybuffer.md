@@ -1,6 +1,6 @@
 ---
 title: 二进制数组
-date: 2016-12-10 10:44
+date: 2016-10-10 10:44
 tags: [JavaScript, ES6]
 categories: JavaScript
 description:  

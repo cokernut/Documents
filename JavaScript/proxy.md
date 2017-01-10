@@ -1,6 +1,6 @@
 ---
 title: Proxy 和 Reflect
-date: 2016-12-10 10:24
+date: 2016-10-10 10:24
 tags: [JavaScript, ES6]
 categories: JavaScript
 description:  

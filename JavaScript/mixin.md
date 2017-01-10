@@ -1,6 +1,6 @@
 ---
 title: Mixin
-date: 2016-12-10 10:56
+date: 2016-10-10 10:56
 tags: [JavaScript, ES6]
 categories: JavaScript
 description:  

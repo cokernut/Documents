@@ -8,6 +8,7 @@
 ***
 ## Python
 ---
+[Django学习笔记--基础知识](http://cokernut.top/2017/01/10/Python/Django%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/)
 [Python3学习笔记--基础知识](http://cokernut.top/2016/10/04/Python/Python3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/)  
 ***
 ## 笔记

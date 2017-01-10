@@ -1,6 +1,6 @@
 ---
 title: Promise对象
-date: 2016-12-10 10:30
+date: 2016-10-10 10:30
 tags: [JavaScript, ES6]
 categories: JavaScript
 description:  

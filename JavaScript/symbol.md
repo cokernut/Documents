@@ -1,6 +1,6 @@
 ---
 title: Symbol
-date: 2016-12-10 10:20
+date: 2016-10-10 10:20
 tags: [JavaScript, ES6]
 categories: JavaScript
 description:  

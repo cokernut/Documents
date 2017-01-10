@@ -1,6 +1,6 @@
 ---
 title: 函数的扩展
-date: 2016-12-10 10:16
+date: 2016-10-10 10:16
 tags: [JavaScript, ES6]
 categories: JavaScript
 description: 

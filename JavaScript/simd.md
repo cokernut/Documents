@@ -1,6 +1,6 @@
 ---
 title: SIMD
-date: 2016-12-10 10:46
+date: 2016-10-10 10:46
 tags: [JavaScript, ES6]
 categories: JavaScript
 description: 

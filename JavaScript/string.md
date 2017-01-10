@@ -1,6 +1,6 @@
 ---
 title: 字符串的扩展
-date: 2016-12-10 10:08
+date: 2016-10-10 10:08
 tags: [JavaScript, ES6]
 categories: JavaScript
 description: 

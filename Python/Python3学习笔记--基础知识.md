@@ -1,7 +1,7 @@
 ---
 title: Python3学习笔记--基础知识
 date: 2016-10-04
-tags: [Python, Python3]
+tags: [Python]
 categories: Python
 description:
 ---
