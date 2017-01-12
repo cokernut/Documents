@@ -1,14 +1,12 @@
 ---
-title: Django学习笔记--基础知识
+title: Django学习笔记--基础知识--views、url、templates
 date: 2017-01-10 10:40:43
 tags: [Python, Django]
 categories: Python
-description:
+description: Django学习笔记--基础知识--views、url、templates
 ---
-Django学习笔记--基础知识
+Django学习笔记--基础知识--views、url、templates--Python3.5.x、Django1.10.x
 <!--more-->
-
-[TOC]
 
 # 基本命令
 
@@ -382,7 +380,7 @@ url(r'^add/(\d+)/(\d+)/$', app_views.add, name='add'),
 
 ```html
 {% if var >= 90 %}
-成绩优秀，自强学堂你没少去吧！学得不错
+成绩优秀
 {% elif var >= 80 %}
 成绩良好
 {% elif var >= 70 %}
@@ -390,7 +388,7 @@ url(r'^add/(\d+)/(\d+)/$', app_views.add, name='add'),
 {% elif var >= 60 %}
 需要努力
 {% else %}
-不及格啊，大哥！多去自强学堂学习啊！
+不及格
 {% endif %}
 ```
 
@@ -410,7 +408,7 @@ num在0到100之间
 
 ```html
 {% if 'string' in List %}
-自强学堂在名单中
+存在
 {% endif %}
 ```
 
